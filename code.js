@@ -58,13 +58,13 @@ function addPersonToList() {
 }
 
 function deleteRandomPerson() {
-  let randomPerson = personsList[Math.floor(Math.random() * personsList.length)];
-  personsList.splice(personsList.indexOf(randomPerson), 1);
-
+  let random = Math.floor(Math.random() * personsList.length);
+  
   if (deletePersonsList === null) {
     deletePersonsList = [];
   }
-  deletePersonsList.push(randomPerson);
+  deletePersonsList.push(personsList[random]);
+  personsList.splice(random, 1);
   // save to local storage
   localStorage.setItem('deletePersonsList', JSON.stringify(deletePersonsList));
   localStorage.setItem('personsList', JSON.stringify(personsList));
