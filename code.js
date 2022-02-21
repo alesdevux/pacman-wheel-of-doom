@@ -48,7 +48,15 @@ function addPersonToList() {
     personsList = [];
   }
   if (person !== '') {
-    personsList.push(person);
+    if (person.includes(',')) {
+      let persons = person.split(',');
+      for (let i = 0; i < persons.length; i++) {
+        personsList.push(persons[i].trim());
+      }
+    } else {
+      personsList.push(person);
+    }
+    addPerson.value = '';
     localStorage.setItem('personsList', JSON.stringify(personsList));
     addPerson.value = null;
     console.log('After add: ' + personsList);
