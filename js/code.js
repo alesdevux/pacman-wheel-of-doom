@@ -7,6 +7,7 @@ const deleteBtn = document.getElementById('delete');
 
 let personsList = JSON.parse(localStorage.getItem('personsList'));
 let deletePersonsList = JSON.parse(localStorage.getItem('deletePersonsList'));
+let lastDeletePerson = JSON.parse(localStorage.getItem('lastDeletePerson'));
 
 deleteBtn.addEventListener('click', deleteRandomPerson);
 addPersonBtn.addEventListener('click', addPersonToList);
@@ -22,14 +23,12 @@ reloadAll();
 
 function reloadAll() {
   // location.reload();
-
+  
   if (personsList === null || personsList.length === 0) {
     deleteBtn.disabled = true;
-  }
-
-  if (personsList === null || personsList.length === 0) {
     active.innerHTML = `<li>No persons active</li>`;
-  } else {
+  }
+  if (personsList !== null && personsList.length > 0) {
     active.innerHTML = '';
     for (let i = 0; i < personsList.length; i++) {
       active.innerHTML += `<li>${personsList[i]}</li>`;
@@ -38,7 +37,8 @@ function reloadAll() {
   
   if (deletePersonsList === null || deletePersonsList.length === 0) {
     inactive.innerHTML = `<li>No persons deth</li>`;
-  } else {
+  } 
+  if (deletePersonsList !== null && deletePersonsList.length > 0) {
     inactive.innerHTML = '';
     for (let i = 0; i < deletePersonsList.length; i++) {
       inactive.innerHTML += `<li>${deletePersonsList[i]}</li>`;
@@ -58,7 +58,8 @@ function addPersonToList() {
       for (let i = 0; i < persons.length; i++) {
         personsList.push(persons[i].trim());
       }
-    } else {
+    } 
+    if (!person.includes(',')) {
       personsList.push(person);
     }
     addPerson.value = '';
