@@ -26,5 +26,11 @@
 }
 
 #delete {
+  border-color: var(--red-pacman);
   color: var(--red-pacman);
+}
+
+#delete:hover {
+  background-color: var(--red-pacman);
+  color: var(--principal-color);
 }
