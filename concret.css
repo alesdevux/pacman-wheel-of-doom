@@ -1,0 +1,11 @@
+#add-person-btn {
+  background: var(--yellow-pacman);
+}
+
+#reset {
+  color: var(--blue-pacman);
+}
+
+#delete {
+  background: var(--red-pacman);
+}
