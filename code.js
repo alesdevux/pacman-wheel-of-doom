@@ -24,6 +24,10 @@ function reloadAll() {
   // location.reload();
 
   if (personsList === null || personsList.length === 0) {
+    deleteBtn.disabled = true;
+  }
+
+  if (personsList === null || personsList.length === 0) {
     active.innerHTML = `<li>No persons active</li>`;
   } else {
     active.innerHTML = '';
@@ -48,6 +52,7 @@ function addPersonToList() {
     personsList = [];
   }
   if (person !== '') {
+    deleteBtn.disabled = false;
     if (person.includes(',')) {
       let persons = person.split(',');
       for (let i = 0; i < persons.length; i++) {
@@ -74,7 +79,8 @@ function deleteRandomPerson() {
   if (personsList.length > 0) {
     deletePersonsList.push(personsList[random]);
     personsList.splice(random, 1);
-  } else {
+  }
+  if (personsList.length <= 0){
     deleteBtn.disabled = true;
   }
   // save to local storage
