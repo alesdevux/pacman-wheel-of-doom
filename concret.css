@@ -1,5 +1,24 @@
+.add {
+  border: 2px solid var(--secondary-color);
+  border-radius: 0.25rem;
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.add:hover #add-person,
+.add:focus #add-person {
+  border-right-color: var(--yellow-pacman);
+}
+
+#add-person {
+  flex: 1;
+  border-right: 2px solid var(--secondary-color);
+}
+
 #add-person-btn {
   color: var(--yellow-pacman);
+  border-radius: 0;
+  border: none;
 }
 
 #reset {

@@ -47,12 +47,21 @@ button:hover {
   background: var(--secondary-color);
 }
 
+button:disabled {
+  border: none;
+  opacity: 0.5;
+  cursor: auto;
+}
+
+button:disabled:hover {
+  background-color: transparent;
+}
+
 input {
   font-size: 1rem;
   font-weight: 700;
   padding: 0.5rem 1.5rem;
-  border: 2px solid var(--secondary-color);
-  border-radius: 0.25rem;
+  border: none;
   background-color: var(--primary-color);
   color: var(--principal-color);
   cursor: text;
@@ -62,8 +71,7 @@ input {
 
 input:focus,
 input:hover {
-  background-color: var(--orange-pacman);
-  color: var(--tertiary-color);
+  background-color: var(--secondary-color);
 }
 
 ul {
