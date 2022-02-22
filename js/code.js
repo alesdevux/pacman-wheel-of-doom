@@ -9,16 +9,6 @@ let personsList = JSON.parse(localStorage.getItem('personsList'));
 let deletePersonsList = JSON.parse(localStorage.getItem('deletePersonsList'));
 let lastDeletePerson = JSON.parse(localStorage.getItem('lastDeletePerson'));
 
-deleteBtn.addEventListener('click', deleteRandomPerson);
-addPersonBtn.addEventListener('click', addPersonToList);
-reset.addEventListener('click', resetList);
-addPerson.addEventListener('keyup', function(event) {
-  if (event.key === 'Enter') {
-    event.preventDefault();
-    addPersonBtn.click();
-  }
-});
-
 reloadAll();
 
 function reloadAll() {
@@ -99,3 +89,13 @@ function resetList() {
   
   reloadAll();
 }
+
+deleteBtn.addEventListener('click', deleteRandomPerson);
+addPersonBtn.addEventListener('click', addPersonToList);
+reset.addEventListener('click', resetList);
+addPerson.addEventListener('keyup', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    addPersonBtn.click();
+  }
+});
