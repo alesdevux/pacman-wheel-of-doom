@@ -43,3 +43,8 @@
   background-color: var(--red-pacman);
   color: var(--principal-color);
 }
+
+#delete:disabled:hover {
+  background-color: transparent;
+  color: var(--red-pacman);
+}

@@ -1,0 +1,35 @@
+.pacman {
+  width: 8rem;
+  height: 8rem;
+  position: relative;
+}
+
+.pacman::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  border-top-left-radius: 25rem;
+  border-top-right-radius: 25rem;
+  background-color: var(--yellow-pacman);
+  animation: pacman-animation 1.5s linear infinite;
+  transform-origin: center bottom;
+  transform: rotate(-45deg);
+}
+
+.pacman::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  border-bottom-left-radius: 25rem;
+  border-bottom-right-radius: 25rem;
+  background-color: var(--yellow-pacman);
+  animation: pacman-animation 1.5s linear infinite;
+  transform-origin: center top;
+  transform: rotate(45deg);
+}
