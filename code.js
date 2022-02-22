@@ -71,8 +71,12 @@ function deleteRandomPerson() {
   if (deletePersonsList === null) {
     deletePersonsList = [];
   }
-  deletePersonsList.push(personsList[random]);
-  personsList.splice(random, 1);
+  if (personsList.length > 0) {
+    deletePersonsList.push(personsList[random]);
+    personsList.splice(random, 1);
+  } else {
+    deleteBtn.disabled = true;
+  }
   // save to local storage
   localStorage.setItem('deletePersonsList', JSON.stringify(deletePersonsList));
   localStorage.setItem('personsList', JSON.stringify(personsList));
