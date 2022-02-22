@@ -48,3 +48,17 @@
   background-color: transparent;
   color: var(--red-pacman);
 }
+
+.lists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.lists > div {
+  border: 2px solid var(--secondary-color);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  flex: 1;
+}
