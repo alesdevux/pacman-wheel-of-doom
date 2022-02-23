@@ -74,6 +74,12 @@ input:hover {
   background-color: var(--secondary-color);
 }
 
+input:disabled {
+  background-color: var(--tertiary-color);
+  color: var(--principal-color);
+  cursor: auto;
+}
+
 ul {
   list-style: none;
 }

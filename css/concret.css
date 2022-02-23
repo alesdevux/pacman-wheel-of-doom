@@ -10,6 +10,12 @@
   border-right-color: var(--yellow-pacman);
 }
 
+.add:hover #add-person:disabled,
+.add:focus #add-person:disabled {
+  border-right-color: var(--secondary-color);
+  cursor: default;
+}
+
 #add-person {
   flex: 1;
   border-right: 2px solid var(--secondary-color);
