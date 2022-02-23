@@ -10,7 +10,7 @@ let personsList = JSON.parse(localStorage.getItem('personsList'));
 let deletePersonsList = JSON.parse(localStorage.getItem('deletePersonsList'));
 let lastDeletePerson = JSON.parse(localStorage.getItem('lastDeletePerson'));
 
-let state = 'active';
+let state = 'initial';
 
 function printList(array, onPrint) {
   if (array === null || array.length === 0) {
@@ -40,6 +40,24 @@ function reloadAll() {
   printLastAdd();
 }
 
+function initialState() {
+  state = 'initial';
+  document.documentElement.setAttribute('data-state', state);
+  addPerson.disabled = false;
+  addPersonBtn.disabled = false;
+  deleteBtn.disabled = true;
+  reset.disabled = true;
+}
+
+function activeState() {
+  state = 'active';
+  document.documentElement.setAttribute('data-state', state);
+  addPersonBtn.disabled = true;
+  deleteBtn.disabled = false;
+  reset.disabled = false;
+  addPerson.disabled = true;
+}
+
 function addPersonToList() {
   let person = addPerson.value;
   if (personsList === null) {
@@ -65,6 +83,7 @@ function addPersonToList() {
 }
 
 function deleteRandomPerson() {
+  activeState();
   let random = Math.floor(Math.random() * personsList.length);
   
   if (deletePersonsList === null) {
@@ -89,10 +108,13 @@ function resetList() {
   deletePersonsList = [];
   localStorage.setItem('personsList', JSON.stringify(personsList));
   localStorage.setItem('deletePersonsList', JSON.stringify(deletePersonsList));
+
+  initialState();
   
   reloadAll();
 }
 
+initialState();
 reloadAll();
 
 deleteBtn.addEventListener('click', deleteRandomPerson);

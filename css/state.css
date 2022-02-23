@@ -1,0 +1,7 @@
+[data-state = "initial"] .name {
+  opacity: 25%;
+}
+
+[data-state = "active"] .name {
+  opacity: 100%;
+}
