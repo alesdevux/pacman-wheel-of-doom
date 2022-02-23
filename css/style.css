@@ -74,6 +74,10 @@ input:hover {
   background-color: var(--secondary-color);
 }
 
+input:focus::placeholder {
+  opacity: 0;
+}
+
 input:disabled {
   background-color: var(--tertiary-color);
   color: var(--principal-color);
