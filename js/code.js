@@ -9,31 +9,21 @@ let personsList = JSON.parse(localStorage.getItem('personsList'));
 let deletePersonsList = JSON.parse(localStorage.getItem('deletePersonsList'));
 let lastDeletePerson = JSON.parse(localStorage.getItem('lastDeletePerson'));
 
-reloadAll();
+function printList(array, onPrint) {
+  if (array === null || array.length === 0) {
+    onPrint.innerHTML = `<li>No persons ${onPrint.id}</li>`;
+  }
+  if (array !== null && array.length > 0) {
+    onPrint.innerHTML = '';
+    for (let i = 0; i < array.length; i++) {
+      onPrint.innerHTML += `<li>${array[i]}</li>`;
+    }
+  }
+}
 
 function reloadAll() {
-  // location.reload();
-  
-  if (personsList === null || personsList.length === 0) {
-    deleteBtn.disabled = true;
-    active.innerHTML = `<li>No persons active</li>`;
-  }
-  if (personsList !== null && personsList.length > 0) {
-    active.innerHTML = '';
-    for (let i = 0; i < personsList.length; i++) {
-      active.innerHTML += `<li>${personsList[i]}</li>`;
-    }
-  }
-  
-  if (deletePersonsList === null || deletePersonsList.length === 0) {
-    inactive.innerHTML = `<li>No persons deth</li>`;
-  } 
-  if (deletePersonsList !== null && deletePersonsList.length > 0) {
-    inactive.innerHTML = '';
-    for (let i = 0; i < deletePersonsList.length; i++) {
-      inactive.innerHTML += `<li>${deletePersonsList[i]}</li>`;
-    }
-  }
+  printList(personsList, active);
+  printList(deletePersonsList, inactive);
 }
 
 function addPersonToList() {
@@ -89,6 +79,8 @@ function resetList() {
   
   reloadAll();
 }
+
+reloadAll();
 
 deleteBtn.addEventListener('click', deleteRandomPerson);
 addPersonBtn.addEventListener('click', addPersonToList);
