@@ -4,11 +4,13 @@ const active = document.getElementById('active');
 const inactive = document.getElementById('inactive');
 const reset = document.getElementById('reset');
 const deleteBtn = document.getElementById('delete');
-const interactiveNames = document.getElementById("interactive-names");
+const interactiveNames = document.getElementById("interactive-name");
 
 let personsList = JSON.parse(localStorage.getItem('personsList'));
 let deletePersonsList = JSON.parse(localStorage.getItem('deletePersonsList'));
 let lastDeletePerson = JSON.parse(localStorage.getItem('lastDeletePerson'));
+
+let state = 'active';
 
 function printList(array, onPrint) {
   if (array === null || array.length === 0) {

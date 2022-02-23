@@ -38,3 +38,11 @@
   transform-origin: center top;
   transform: rotate(45deg);
 }
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  flex: 1;
+  align-self: center;
+}
