@@ -1,2 +1,2 @@
-const interactiveNames = document.getElementById("interactive-names");
+// const interactiveNames = document.getElementById("interactive-names");
 

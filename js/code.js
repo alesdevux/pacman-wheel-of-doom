@@ -4,6 +4,7 @@ const active = document.getElementById('active');
 const inactive = document.getElementById('inactive');
 const reset = document.getElementById('reset');
 const deleteBtn = document.getElementById('delete');
+const interactiveNames = document.getElementById("interactive-names");
 
 let personsList = JSON.parse(localStorage.getItem('personsList'));
 let deletePersonsList = JSON.parse(localStorage.getItem('deletePersonsList'));
@@ -21,9 +22,20 @@ function printList(array, onPrint) {
   }
 }
 
+function printLastAdd() {
+  if (personsList === null || personsList.length === 0) {
+    interactiveNames.innerHTML = 'No persons';
+  }
+  if (personsList !== null && personsList.length > 0) {
+    let lastAdd = personsList[0];
+    interactiveNames.textContent = lastAdd;
+  }
+}
+
 function reloadAll() {
   printList(personsList, active);
   printList(deletePersonsList, inactive);
+  printLastAdd();
 }
 
 function addPersonToList() {
@@ -36,16 +48,15 @@ function addPersonToList() {
     if (person.includes(',')) {
       let persons = person.split(',');
       for (let i = 0; i < persons.length; i++) {
-        personsList.push(persons[i].trim());
+        personsList.unshift(persons[i].trim());
       }
     } 
     if (!person.includes(',')) {
-      personsList.push(person);
+      personsList.unshift(person);
     }
     addPerson.value = '';
     localStorage.setItem('personsList', JSON.stringify(personsList));
     addPerson.value = null;
-    console.log('After add: ' + personsList);
   }
 
   reloadAll();
@@ -58,7 +69,7 @@ function deleteRandomPerson() {
     deletePersonsList = [];
   }
   if (personsList.length > 0) {
-    deletePersonsList.push(personsList[random]);
+    deletePersonsList.unshift(personsList[random]);
     personsList.splice(random, 1);
   }
   if (personsList.length <= 0){
