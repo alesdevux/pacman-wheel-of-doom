@@ -4,7 +4,8 @@ const active = document.getElementById('active');
 const inactive = document.getElementById('inactive');
 const reset = document.getElementById('reset');
 const deleteBtn = document.getElementById('delete');
-const interactiveNames = document.getElementById("interactive-name");
+const interactivePacman = document.getElementById('interactive-pacman');
+const interactiveName = document.getElementById("interactive-name");
 
 let personsList = JSON.parse(localStorage.getItem('personsList'));
 let deletePersonsList = JSON.parse(localStorage.getItem('deletePersonsList'));
@@ -26,12 +27,17 @@ function printList(array, onPrint) {
 
 function printLastAdd() {
   if (personsList === null || personsList.length === 0) {
-    interactiveNames.innerHTML = 'No persons';
+    interactiveName.innerHTML = 'No persons';
   }
-  if (personsList !== null && personsList.length > 0) {
-    let lastAdd = personsList[0];
-    interactiveNames.textContent = lastAdd;
+  if (state === 'initial') {
+    if (personsList !== null && personsList.length > 0) {
+      let lastAdd = personsList[0];
+      interactiveName.textContent = lastAdd;
+    }
   }
+  /* if (state === 'active') {
+    interactiveName.textContent = lastDeletePerson;
+  } */
 }
 
 function reloadAll() {
@@ -89,25 +95,52 @@ function addPersonToList() {
   reloadAll();
 }
 
-function deleteRandomPerson() {
+function sendSomeoneToGlory(random, personsList) {
+  setTimeout(() => {
+    deletePerson = personsList[random];
+    interactivePacman.classList.remove('eat');
+    
+    if (deletePersonsList === null) {
+      deletePersonsList = [];
+    }
+    if (personsList.length > 0) {
+      deletePersonsList.unshift(deletePerson);
+      personsList.splice(random, 1);
+    }
+    if (personsList.length <= 0){
+      deleteBtn.disabled = true;
+    }
+    // save to local storage
+    localStorage.setItem('deletePersonsList', JSON.stringify(deletePersonsList));
+    localStorage.setItem('personsList', JSON.stringify(personsList));
+  
+    reloadAll();
+  } , 5000);
+}
+
+function printNameToEat(i, personsList) {
+  interactiveName.textContent = personsList[i];
+  console.log('Function printNameToEat: ' + personsList[i]);
+}
+
+function eatPacman(random, personsList) {
+  let fast = setInterval(() => {
+    let newRandom = Math.floor(Math.random() * personsList.length);
+    interactiveName.textContent = personsList[newRandom];
+  }, 300);
+  setTimeout(() => {
+    interactivePacman.classList.add('eat');
+    interactiveName.textContent = personsList[random];
+    clearInterval(fast);
+    sendSomeoneToGlory(random, personsList);
+  }, 3000);
+}
+
+function getRandom(personsList) {
   activeState();
   let random = Math.floor(Math.random() * personsList.length);
-  
-  if (deletePersonsList === null) {
-    deletePersonsList = [];
-  }
-  if (personsList.length > 0) {
-    deletePersonsList.unshift(personsList[random]);
-    personsList.splice(random, 1);
-  }
-  if (personsList.length <= 0){
-    deleteBtn.disabled = true;
-  }
-  // save to local storage
-  localStorage.setItem('deletePersonsList', JSON.stringify(deletePersonsList));
-  localStorage.setItem('personsList', JSON.stringify(personsList));
-
-  reloadAll();
+  console.log('Random: ' + random);
+  eatPacman(random, personsList);
 }
 
 function resetList() {
@@ -130,7 +163,7 @@ if (state === 'active') {
 
 reloadAll();
 
-deleteBtn.addEventListener('click', deleteRandomPerson);
+deleteBtn.addEventListener('click', () => getRandom(personsList));
 addPersonBtn.addEventListener('click', addPersonToList);
 reset.addEventListener('click', resetList);
 addPerson.addEventListener('keyup', function(event) {
