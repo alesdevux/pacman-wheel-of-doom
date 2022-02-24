@@ -118,9 +118,9 @@ function sendSomeoneToGlory(random, personsList) {
     }
   }, timeInterval);
   setTimeout(() => {
-    console.log('TimeOut');
     clearInterval(move);
     deletePerson = personsList[random];
+    interactiveName.textContent = '';
     interactivePacman.classList.remove('eat');
     interactiveName.classList.remove('food');
     
@@ -144,7 +144,6 @@ function sendSomeoneToGlory(random, personsList) {
 
 function printNameToEat(i, personsList) {
   interactiveName.textContent = personsList[i];
-  console.log('Function printNameToEat: ' + personsList[i]);
 }
 
 function eatPacman(random, personsList) {
@@ -166,7 +165,6 @@ function getRandom(personsList) {
   activeState();
   interactiveName.classList.add('rulete');
   let random = Math.floor(Math.random() * personsList.length);
-  console.log('Random: ' + random);
   eatPacman(random, personsList);
 }
 

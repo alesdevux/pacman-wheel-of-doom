@@ -9,6 +9,7 @@
   width: 100%;
   height: 8rem;
   position: absolute;
+  z-index: 1;
 }
 
 .pacman::before {
@@ -56,8 +57,16 @@
   margin-left: 10rem;
 }
 
-.name {
+.food {
   animation: food 1s linear infinite;
+  display: block;
+  background-image: linear-gradient(90deg, var(--tertiary-color), var(--principal-color), var(--tertiary-color));
+  background-size: 90% 100%;
+  background-repeat: no-repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: food 4s linear forwards;
 }
 
 .rulete {
@@ -88,17 +97,14 @@
   }
 }
 
-/* @keyframes food {
+@keyframes food {
   0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(2rem);
+    background-position: -500% 0;
   }
   100% {
-    transform: translateY(0);
+    background-position: 500% 0;
   }
-} */
+}
 
 @keyframes rulete {
   0% {
