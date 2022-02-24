@@ -46,7 +46,12 @@ function initialState() {
   localStorage.setItem('state', state);
   addPerson.disabled = false;
   addPersonBtn.disabled = false;
-  deleteBtn.disabled = true;
+  if (personsList === null || personsList.length === 0) {
+    deleteBtn.disabled = true;
+  }
+  if (personsList !== null && personsList.length > 0) {
+    deleteBtn.disabled = false;
+  }
   reset.disabled = true;
 }
 
@@ -119,6 +124,10 @@ function resetList() {
 if (state === 'initial' || state === null) {
   initialState();
 }
+if (state === 'active') {
+  activeState();
+}
+
 reloadAll();
 
 deleteBtn.addEventListener('click', deleteRandomPerson);
