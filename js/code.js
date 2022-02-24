@@ -116,9 +116,7 @@ function resetList() {
   reloadAll();
 }
 
-// initialState();
-if (state === 'initial') {
-  console.log('initial state');
+if (state === 'initial' || state === null) {
   initialState();
 }
 reloadAll();
