@@ -96,7 +96,27 @@ function addPersonToList() {
 }
 
 function sendSomeoneToGlory(random, personsList) {
+  let leftMove = 0;
+  let screenWidth = document.documentElement.clientWidth;
+  let move = setInterval(() => {
+    leftMove += 10;
+    interactivePacman.style.left = leftMove + 'px';
+    
+    if (leftMove >= screenWidth) {
+      leftMove = -100;
+      let returnMove = setInterval(() => {
+        leftMove += 10;
+        interactivePacman.style.left = leftMove + 'px';
+        if (leftMove >= 0) {
+          clearInterval(returnMove);
+        }
+      }, 100);
+      clearInterval(move);
+    }
+  }, 100);
   setTimeout(() => {
+    console.log('TimeOut');
+    clearInterval(move);
     deletePerson = personsList[random];
     interactivePacman.classList.remove('eat');
     
@@ -115,7 +135,7 @@ function sendSomeoneToGlory(random, personsList) {
     localStorage.setItem('personsList', JSON.stringify(personsList));
   
     reloadAll();
-  } , 5000);
+  } , 6500);
 }
 
 function printNameToEat(i, personsList) {
@@ -127,7 +147,7 @@ function eatPacman(random, personsList) {
   let fast = setInterval(() => {
     let newRandom = Math.floor(Math.random() * personsList.length);
     interactiveName.textContent = personsList[newRandom];
-  }, 200);
+  }, 300);
   setTimeout(() => {
     interactivePacman.classList.add('eat');
     interactiveName.textContent = personsList[random];
