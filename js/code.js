@@ -127,7 +127,7 @@ function eatPacman(random, personsList) {
   let fast = setInterval(() => {
     let newRandom = Math.floor(Math.random() * personsList.length);
     interactiveName.textContent = personsList[newRandom];
-  }, 300);
+  }, 200);
   setTimeout(() => {
     interactivePacman.classList.add('eat');
     interactiveName.textContent = personsList[random];

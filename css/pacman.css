@@ -19,7 +19,6 @@
   border-top-left-radius: 25rem;
   border-top-right-radius: 25rem;
   background-color: var(--yellow-pacman);
-  animation: pacman-animation 1.5s linear infinite;
   transform-origin: center bottom;
   transform: rotate(-45deg);
 }
@@ -34,9 +33,16 @@
   border-bottom-left-radius: 25rem;
   border-bottom-right-radius: 25rem;
   background-color: var(--yellow-pacman);
-  animation: pacman-animation 1.5s linear infinite;
   transform-origin: center top;
   transform: rotate(45deg);
+}
+
+.eat::before {
+  animation: top-pacman 1.5s linear infinite;
+}
+
+.eat::after {
+  animation: bottom-pacman 1.5s linear infinite;
 }
 
 .name {
@@ -45,4 +51,28 @@
   text-transform: uppercase;
   flex: 1;
   align-self: center;
+}
+
+@keyframes top-pacman {
+  0% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes bottom-pacman {
+  0% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
 }
