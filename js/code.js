@@ -35,9 +35,6 @@ function printLastAdd() {
       interactiveName.textContent = lastAdd;
     }
   }
-  /* if (state === 'active') {
-    interactiveName.textContent = lastDeletePerson;
-  } */
 }
 
 function reloadAll() {
@@ -96,29 +93,7 @@ function addPersonToList() {
 }
 
 function sendSomeoneToGlory(random, personsList) {
-  let leftMove = 0;
-  let screenWidth = document.documentElement.clientWidth;
-  let timeInterval = 50;
-  let movePercentage = screenWidth / 100;
-
-  let move = setInterval(() => {
-    leftMove += movePercentage;
-    interactivePacman.style.left = leftMove + 'px';
-    
-    if (leftMove >= screenWidth) {
-      leftMove = -100;
-      let returnMove = setInterval(() => {
-        leftMove += movePercentage;
-        interactivePacman.style.left = leftMove + 'px';
-        if (leftMove >= 0) {
-          clearInterval(returnMove);
-        }
-      }, timeInterval);
-      clearInterval(move);
-    }
-  }, timeInterval);
   setTimeout(() => {
-    clearInterval(move);
     deletePerson = personsList[random];
     interactiveName.textContent = '';
     interactivePacman.classList.remove('eat');
@@ -134,12 +109,12 @@ function sendSomeoneToGlory(random, personsList) {
     if (personsList.length <= 0){
       deleteBtn.disabled = true;
     }
-    // save to local storage
+    
     localStorage.setItem('deletePersonsList', JSON.stringify(deletePersonsList));
     localStorage.setItem('personsList', JSON.stringify(personsList));
   
     reloadAll();
-  } , 6500);
+  } , 3500);
 }
 
 function eatPacman(random, personsList) {

@@ -9,6 +9,7 @@
   width: 100%;
   height: 8rem;
   position: absolute;
+  left: 0;
   z-index: 1;
 }
 
@@ -40,6 +41,10 @@
   transform: rotate(45deg);
 }
 
+.eat {
+  animation: move 3s linear;
+}
+
 .eat::before {
   animation: top-pacman 1.5s linear infinite;
 }
@@ -54,23 +59,28 @@
   text-transform: uppercase;
   flex: 1;
   align-self: center;
-  margin-left: 10rem;
+  text-align: center;
 }
 
 .food {
-  animation: food 1s linear infinite;
   display: block;
-  background-image: linear-gradient(90deg, var(--tertiary-color), var(--principal-color), var(--tertiary-color));
-  background-size: 90% 100%;
-  background-repeat: no-repeat;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: food 4s linear forwards;
+  color: var(--white);
+  animation: food 2.5s linear forwards;
+  transform: scale(1.2);
 }
 
 .rulete {
   animation: rulete 0.3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(110%);
+  }
 }
 
 @keyframes top-pacman {
@@ -99,10 +109,18 @@
 
 @keyframes food {
   0% {
-    background-position: -500% 0;
+    color: var(--white);
+  }
+  49% {
+    color: var(--white);
+  }
+  50% {
+    /* background-position: 500% 0; */
+    color: transparent;
   }
   100% {
-    background-position: 500% 0;
+    /* background-position: -500% 0; */
+    color: transparent;
   }
 }
 
@@ -115,7 +133,7 @@
     opacity: 0.7;
   }
   50% {
-    transform: translateY(0) scale(1.2) translateX(1rem);
+    transform: translateY(0) scale(1.2);
     opacity: 1;
   }
   80% {
