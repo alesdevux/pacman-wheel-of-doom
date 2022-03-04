@@ -24,7 +24,7 @@ Developed with love by [@aleswebgit](https://github.com/aleswebgit "Ales GitHub 
 - [ ] Add a sound when Pacman eats a ghost
 - [ ] Possibility to restart with ghosts added previously
 
-## Joy the game
+## Enjoy the game
 [Pacman Wheel of Doom](https://aleswebgit.github.io/pacman-wheel-of-doom/ "Pacman Wheel of Doom")
 
 ------------
