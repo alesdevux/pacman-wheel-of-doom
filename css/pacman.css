@@ -115,11 +115,9 @@
     color: var(--white);
   }
   50% {
-    /* background-position: 500% 0; */
     color: transparent;
   }
   100% {
-    /* background-position: -500% 0; */
     color: transparent;
   }
 }
