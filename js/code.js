@@ -142,10 +142,6 @@ function sendSomeoneToGlory(random, personsList) {
   } , 6500);
 }
 
-function printNameToEat(i, personsList) {
-  interactiveName.textContent = personsList[i];
-}
-
 function eatPacman(random, personsList) {
   let fast = setInterval(() => {
     let newRandom = Math.floor(Math.random() * personsList.length);
